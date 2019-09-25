@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-const {MONGOOSE_DB} = require("./variableenv");
+const {MONGOOSE_DB, MONGOOSE_CONNECTION} = require("./variableenv");
 
-const MONGOOSE_CONNECTION =
-  process.env.MONGOOSE_CONNECTION || `mongodb://localhost:27017/${MONGOOSE_DB}`;
+const CONNECTION =
+  MONGOOSE_CONNECTION || `mongodb://localhost:27017/${MONGOOSE_DB}`;
 
-mongoose.connect(MONGOOSE_CONNECTION, {
+mongoose.connect(CONNECTION, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
