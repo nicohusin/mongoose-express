@@ -96,11 +96,15 @@ module.exports = {
   },
   getUserById: (req, res) => {
     const decoded = jwt.verify(req.headers.token, "itIsSecretBeetweenUs");
-    User.findOne({ id: decoded.data.id })
+    console.log(decoded);
+
+    User.findOne({ _id: decoded.data._id })
       .populate("addresses", "address -_id")
       .populate({ path: "blog", populate: { path: "comments" } })
 
       .then(result => {
+        console.log(result, "findone");
+
         res.send(result);
       })
       .catch(error => console.log(error));
